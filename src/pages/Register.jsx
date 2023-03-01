@@ -39,30 +39,25 @@ export default function Register() {
 
     const navigate = useNavigate()
 
-    const handleSubmit = (event) => {
-        console.log(image)
+    const handleSubmit = (event) => {       
         event.preventDefault();
         console.log(phone)
+        console.log(image)
         const user = []
-        sessionStorage.setItem("user", JSON.stringify({
+        const userInfo = {
             firstname:firstName,
             lastname:lastName,
             email:email,
             password: window.btoa(password),
             phone:phone,
             image:image,
-        }))
-            localStorage.setItem("user", JSON.stringify({
-            firstname: firstName,
-            lastname: lastName,
-            email: email,
-            password: window.btoa(password),
-            phone: phone,
-            image: image,
-        }))
+        }
+
+        sessionStorage.setItem("user", JSON.stringify(userInfo))
+        localStorage.setItem("user", JSON.stringify(userInfo))
         navigate("/home");
 
-
+console.log(user)
         // if (password.length >= 6 && password.length <= 20
         //     // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
         // ) {

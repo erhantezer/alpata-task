@@ -13,7 +13,7 @@ const Navbar = () => {
 
 
     const currentUser = JSON.parse(sessionStorage.getItem("user"))
-console.log(currentUser)
+    console.log(currentUser)
 
     return (
         <nav style={{ backgroundColor: "lightgrey" }} className="navbar navbar-expand-lg" >
@@ -26,7 +26,7 @@ console.log(currentUser)
                 </button>
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 fw-bolder">
-                        {currentUser?.firstname ? (
+                        {currentUser ? (
                             <>
                                 <li className="nav-item ">
                                     <Link className="nav-link active me-2" aria-current="page" to="/home">Home</Link>

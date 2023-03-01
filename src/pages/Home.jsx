@@ -2,7 +2,7 @@
 // const token = window.atob(sessionStorage.getItem('token'));
 
 const Home = () => {
-  const currentUser = JSON.parse(sessionStorage.getItem("user"))
+  const currentUser = JSON.parse(localStorage.getItem("user"))
   console.log(window.atob(currentUser?.password))
   console.log(currentUser?.firstname)
   return (

@@ -36,10 +36,21 @@ export default function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const userInfo = {
+            email: email,
+            password: window.btoa(password),
+        }
+        sessionStorage.setItem("user", JSON.stringify(userInfo))
+        
+
+        const smailPass = JSON.parse(sessionStorage.getItem("user"))
         const mailPassword = JSON.parse(localStorage.getItem("user"))
+
         console.log(mailPassword?.email)
         console.log(window.atob(mailPassword?.password))
-        if (email === mailPassword?.email && password === window.atob(mailPassword?.password)){
+
+        if (smailPass?.email === mailPassword?.email && window.atob(smailPass?.password) === window.atob(mailPassword?.password)){
             navigate("/home")
         }else {
             navigate("/")
