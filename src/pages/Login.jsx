@@ -52,7 +52,7 @@ export default function Login() {
         console.log(window.atob(mailPassword?.password))
 
         if (password.length >= 6 && password.length <= 20) {
-            if (email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            if (email !== '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
                 if (smailPass?.email === mailPassword?.email && window.atob(smailPass?.password) === window.atob(mailPassword?.password)) {
                     navigate("/home")
                     toastSuccessNotify("Kayit Başarili")

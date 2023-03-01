@@ -59,7 +59,7 @@ export default function Register() {
         // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
         if (password.length >= 6 && password.length <= 20) {
 
-            if (firstName != '' && lastName != "" && email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            if (firstName !== '' && lastName !== "" && email !== '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
                 sessionStorage.setItem("user", JSON.stringify(userInfo))
                 localStorage.setItem("user", JSON.stringify(userInfo))
                 navigate("/home");
