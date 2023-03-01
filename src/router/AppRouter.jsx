@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import PrivateRouter from './PrivateRouter'
 
 const AppRouter = () => {
     return (
@@ -11,7 +12,9 @@ const AppRouter = () => {
             <Navbar/>
             <Routes>
                 <Route path='/' element={<Login />}/>
-                <Route path='home' element={<Home/>}/>
+                <Route path='/home' element={<PrivateRouter />}>
+                    <Route path='' element={<Home />} />
+                </Route>
                 <Route path='register' element={<Register/>}/>
             </Routes>
         </BrowserRouter>

@@ -3,9 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -45,16 +43,26 @@ export default function Register() {
         console.log(image)
         event.preventDefault();
         console.log(phone)
-
+        const user = []
         sessionStorage.setItem("user", JSON.stringify({
             firstname:firstName,
             lastname:lastName,
             email:email,
-            password:password,
+            password: window.btoa(password),
             phone:phone,
             image:image,
         }))
-        navigate("/home")
+            localStorage.setItem("user", JSON.stringify({
+            firstname: firstName,
+            lastname: lastName,
+            email: email,
+            password: window.btoa(password),
+            phone: phone,
+            image: image,
+        }))
+        navigate("/home");
+
+
         // if (password.length >= 6 && password.length <= 20
         //     // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
         // ) {

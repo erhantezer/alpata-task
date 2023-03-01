@@ -1,10 +1,12 @@
-import React from 'react'
+
+// const token = window.atob(sessionStorage.getItem('token'));
 
 const Home = () => {
   const currentUser = JSON.parse(sessionStorage.getItem("user"))
-  console.log(currentUser.firstname)
+  console.log(window.atob(currentUser?.password))
+  console.log(currentUser?.firstname)
   return (
-    <div>{currentUser.firstname}</div>
+    <div>{currentUser?.firstname}</div>
   )
 }
 

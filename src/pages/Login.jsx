@@ -32,17 +32,20 @@ const theme = createTheme();
 export default function Login() {
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
-
     const navigate = useNavigate()
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+        const mailPassword = JSON.parse(localStorage.getItem("user"))
+        console.log(mailPassword?.email)
+        console.log(window.atob(mailPassword?.password))
+        if (email === mailPassword?.email && password === window.atob(mailPassword?.password)){
+            navigate("/home")
+        }else {
+            navigate("/")
+        }
     };
 
-    const handleProviderLogin = () => {
-        
-    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -104,7 +107,7 @@ export default function Login() {
                             </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 12, mb: 4 }} />
+                <Copyright sx={{ mt: 6, mb: 2 }} />
             </Container>
         </ThemeProvider>
     );
