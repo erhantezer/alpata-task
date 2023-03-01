@@ -97,24 +97,14 @@ export default function Login() {
                         >
                             Sign In
                         </Button>
-                        
-                        <Grid container>
-                            <Grid item xs>
-                                <Link to='#' 
-                                // onClick={() => forgotPassword(email)} 
-                                variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
                             <Grid item>
                                 <Link href="/register" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
-                        </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+                <Copyright sx={{ mt: 12, mb: 4 }} />
             </Container>
         </ThemeProvider>
     );

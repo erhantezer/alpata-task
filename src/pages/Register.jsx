@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { MuiTelInput } from 'mui-tel-input'
+import { useGlobalContext } from '../context/context';
 
 function Copyright(props) {
     return (
@@ -36,25 +37,27 @@ export default function Register() {
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
     const [phone, setPhone] = React.useState('+90')
+    const { image, setImage } = useGlobalContext()
 
     const navigate = useNavigate()
 
     const handleSubmit = (event) => {
+        console.log(image)
         event.preventDefault();
         console.log(phone)
-        if (password.length >= 6 && password.length <= 20 
+        if (password.length >= 6 && password.length <= 20
             // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
-            ) {
+        ) {
             console.log("ilk")
             if (firstName != '' && lastName != "" && email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
                 console.log(firstName)
             }
-            
+
         } else {
             console.log("error")
         }
     }
-    
+
     const handleChange = (newPhone) => {
         setPhone(newPhone)
     }
@@ -114,14 +117,14 @@ export default function Register() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <MuiTelInput 
-                                label="Phone Number"
-                                id="phone"
-                                value={phone}
-                                name='phone' 
-                                fullWidth 
-                                autoComplete="family-name" 
-                                onChange={handleChange} 
+                                <MuiTelInput
+                                    label="Phone Number"
+                                    id="phone"
+                                    value={phone}
+                                    name='phone'
+                                    fullWidth
+                                    autoComplete="family-name"
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -136,11 +139,11 @@ export default function Register() {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
-                                />
+                            <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                                <Button variant="contained" component="label">
+                                    Upload image
+                                    <input hidden accept="image/*" multiple type="file" onChange={(e) => setImage(e.target.value)} />
+                                </Button>
                             </Grid>
                         </Grid>
                         <Button
@@ -151,16 +154,10 @@ export default function Register() {
                         >
                             Sign Up
                         </Button>
-                        <Grid container justifyContent="flex-end">
-                            <Grid item>
-                                <Link href="/login" variant="body2">
-                                    Already have an account? Sign in
-                                </Link>
-                            </Grid>
-                        </Grid>
+
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
+                <Copyright sx={{ mt: 2 }} />
             </Container>
         </ThemeProvider>
     );
