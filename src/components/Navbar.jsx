@@ -21,16 +21,16 @@ const Navbar = () => {
                         {currentUser ? (
                             <>
                                 <li className="nav-item ">
-                                    <Link className="nav-link active me-2" aria-current="page" to="/">Home</Link>
+                                    <Link className="nav-link active me-2" aria-current="page" to="/home">Home</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link active" aria-current="page" to="/login">Logout</Link>
+                                    <Link className="nav-link active" aria-current="page" to="/">Logout</Link>
                                 </li>
                             </>
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link me-2" to="/login">Login</Link>
+                                    <Link className="nav-link me-2" to="/">Login</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/register">Register</Link>
