@@ -10,11 +10,12 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import Webcam from "react-webcam";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Button } from '@mui/material';
+import VideocamIcon from '@mui/icons-material/Videocam';
 
 
 const ExpandMore = styled((props) => {
@@ -30,11 +31,17 @@ const ExpandMore = styled((props) => {
 
 export default function Home() {
   const [like, setLike] = React.useState(false);
+  const [show, setShow] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const currentUser = JSON.parse(localStorage.getItem("user"))
   console.log(window.atob(currentUser?.password))
   console.log(currentUser?.firstname);
   console.log((currentUser.image).split("\\")[2])
+
+
+  
+
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -70,9 +77,14 @@ export default function Home() {
         <IconButton aria-label="add to favorites" onClick={() => setLike(!like)}>
           {like ? <FavoriteIcon sx={{ color: "red" }} /> : <FavoriteIcon />} 
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+
+
+        <Button className="App" onClick={() => setShow(!show)}>
+          <VideocamIcon/>
+          {show ? <Webcam /> : null}
+        </Button>
+        
+
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
