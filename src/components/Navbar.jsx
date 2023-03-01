@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
 
-    const currentUser = true;
+    const currentUser = false;
 
-    
+
     return (
         <nav style={{ backgroundColor: "lightgrey" }} className="navbar navbar-expand-lg" >
             <div className="container-fluid" style={{ display: "flex" }}>
