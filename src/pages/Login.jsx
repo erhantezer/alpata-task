@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import { toastErrorNotify, toastSuccessNotify } from '../helper/toastify';
 
 function Copyright(props) {
     return (
@@ -42,7 +43,7 @@ export default function Login() {
             password: window.btoa(password),
         }
         sessionStorage.setItem("user", JSON.stringify(userInfo))
-        
+
 
         const smailPass = JSON.parse(sessionStorage.getItem("user"))
         const mailPassword = JSON.parse(localStorage.getItem("user"))
@@ -50,11 +51,24 @@ export default function Login() {
         console.log(mailPassword?.email)
         console.log(window.atob(mailPassword?.password))
 
-        if (smailPass?.email === mailPassword?.email && window.atob(smailPass?.password) === window.atob(mailPassword?.password)){
-            navigate("/home")
-        }else {
-            navigate("/")
+        if (password.length >= 6 && password.length <= 20) {
+            if (email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                if (smailPass?.email === mailPassword?.email && window.atob(smailPass?.password) === window.atob(mailPassword?.password)) {
+                    navigate("/home")
+                    toastSuccessNotify("Kayit Başarili")
+                } else {
+                    navigate("/")
+                }
+                
+            } else {
+                toastErrorNotify("Alanlar boş birakilamaz")
+            }
+
+        } else {
+            toastErrorNotify("Şifre 6 ile 20 haneli olmali")
         }
+
+
     };
 
 
@@ -111,11 +125,11 @@ export default function Login() {
                         >
                             Sign In
                         </Button>
-                            <Grid item>
-                                <Link href="/register" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
+                        <Grid item>
+                            <Link href="/register" variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 6, mb: 2 }} />

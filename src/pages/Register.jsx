@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { MuiTelInput } from 'mui-tel-input'
 import { useGlobalContext } from '../context/context';
+import { toastErrorNotify, toastSuccessNotify } from '../helper/toastify';
 
 function Copyright(props) {
     return (
@@ -39,36 +40,37 @@ export default function Register() {
 
     const navigate = useNavigate()
 
-    const handleSubmit = (event) => {       
+    const handleSubmit = (event) => {
         event.preventDefault();
         console.log(phone)
         console.log(image)
-        const user = []
+
         const userInfo = {
-            firstname:firstName,
-            lastname:lastName,
-            email:email,
+            firstname: firstName,
+            lastname: lastName,
+            email: email,
             password: window.btoa(password),
-            phone:phone,
-            image:image,
+            phone: phone,
+            image: image,
         }
 
-        sessionStorage.setItem("user", JSON.stringify(userInfo))
-        localStorage.setItem("user", JSON.stringify(userInfo))
-        navigate("/home");
 
-console.log(user)
-        // if (password.length >= 6 && password.length <= 20
-        //     // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
-        // ) {
-        //     console.log("ilk")
-        //     if (firstName != '' && lastName != "" && email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        //         console.log(firstName)
-        //     }
 
-        // } else {
-        //     console.log("error")
-        // }
+        // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
+        if (password.length >= 6 && password.length <= 20) {
+
+            if (firstName != '' && lastName != "" && email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                sessionStorage.setItem("user", JSON.stringify(userInfo))
+                localStorage.setItem("user", JSON.stringify(userInfo))
+                navigate("/home");
+                toastSuccessNotify("Kayit Başarili")
+            } else {
+                toastErrorNotify("Alanlar boş birakilamaz")
+            }
+
+        } else {
+            toastErrorNotify("Şifre 6 ile 20 haneli olmalı")
+        }
     }
 
     const handleChange = (newPhone) => {
