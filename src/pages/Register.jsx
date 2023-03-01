@@ -45,17 +45,27 @@ export default function Register() {
         console.log(image)
         event.preventDefault();
         console.log(phone)
-        if (password.length >= 6 && password.length <= 20
-            // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
-        ) {
-            console.log("ilk")
-            if (firstName != '' && lastName != "" && email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                console.log(firstName)
-            }
 
-        } else {
-            console.log("error")
-        }
+        sessionStorage.setItem("user", JSON.stringify({
+            firstname:firstName,
+            lastname:lastName,
+            email:email,
+            password:password,
+            phone:phone,
+            image:image,
+        }))
+        navigate("/home")
+        // if (password.length >= 6 && password.length <= 20
+        //     // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
+        // ) {
+        //     console.log("ilk")
+        //     if (firstName != '' && lastName != "" && email != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        //         console.log(firstName)
+        //     }
+
+        // } else {
+        //     console.log("error")
+        // }
     }
 
     const handleChange = (newPhone) => {
