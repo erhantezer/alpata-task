@@ -15,7 +15,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useGlobalContext } from '../context/context';
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,12 +29,12 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function Home() {
+  const [like, setLike] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const currentUser = JSON.parse(localStorage.getItem("user"))
   console.log(window.atob(currentUser?.password))
   console.log(currentUser?.firstname);
-  const {image} = useGlobalContext()
-  // console.log(image.(""))
+  console.log((currentUser.image).split("\\")[2])
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -43,9 +43,7 @@ export default function Home() {
     <Card className='card' sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {currentUser?.firstname[0]+currentUser?.lastname[0]}
-          </Avatar>
+          <Avatar alt={`${currentUser?.firstname} ${currentUser?.lastname}`} src={(currentUser.image).split("\\")[2]} />
         }
         action={
           <IconButton aria-label="settings">
@@ -53,24 +51,24 @@ export default function Home() {
           </IconButton>
         }
         title={`${currentUser?.firstname} ${currentUser?.lastname}`}
-        subheader={new Date().getFullYear()}
+        subheader={new Date().toDateString()}
       />
       <CardMedia
         component="img"
-        height="194"
-        image={currentUser?.image ? (currentUser?.image) : ("/static/images/cards/paella.jpg")}
-        alt={image}
+        height="120"
+        width="120"
+        image={currentUser?.image ? (currentUser.image).split("\\")[2] : ("/static/images/cards/paella.jpg")}
+        alt={(currentUser.image).split("\\")[2]}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+        <Typography sx={{  textAlign:"justify"}} variant="body2" color="text.secondary">
+          <span className='text-danger fs-5 fw-bold'>Alpata Teknoloji & Yazılım</span><br />
+          Alpata Teknoloji ve Yazılım son zamanlarda popülaritesi artan milli yazılım, milli teknoloji üretimini 2000 yılından bu yana Eskişehir merkezli olarak gerçekleştirmektedir. Eskişehir’in ardından Ankara ofisini de hizmete almış ve ulusal bir marka olma yolunda emin adımlar ile ilerlemektedir.
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+        <IconButton aria-label="add to favorites" onClick={() => setLike(!like)}>
+          {like ? <FavoriteIcon sx={{ color: "red" }} /> : <FavoriteIcon />} 
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
@@ -86,30 +84,15 @@ export default function Home() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-            aside for 10 minutes.
+          
+          <Typography sx={{ textAlign: "justify",textIndent:"20px" }} paragraph>
+            Teknolojinin hızla geliştiği bu yıllarda güçlü ve dinamik çalışan kadrosu ile firmalara, kurumlara yenilikçi ürettiği teknolojiler ile hizmet vermektedir. Alpata grup şirketlerine bağlı, Alpata Teknoloji ve Yazılım 18 seneyi aşkın süredir ürettiği yazılım ve teknolojileri birçok üniversiteden ve denetleyici kuruluştan onay almıştır. Firma ISO 9001 ve ISO 27001 sertifikaları ile uluslararası alanda bir oyuncu olmayı başarmıştır.
           </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-            medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-            occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-            large plate and set aside, leaving chicken and chorizo in the pan. Add
-            pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-            stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+          <Typography sx={{ textAlign: "justify", textIndent: "20px" }} paragraph>
+            Sektörde kurulduğu günden bu yana 500 aşan firma ve kuruma hizmet vererek alanında öncü ürünler ile global pazarda da ülkemizden çıkan tamamen yerli sermayeye sahip bir firma hedefi ile sürdürülebilir üretim anlayışını kendine misyon edinerek hizmet vermeye ve büyümeye devam etmektedir.
           </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is absorbed,
-            15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-            mussels, tucking them down into the rice, and cook again without
-            stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
+          <Typography sx={{ textAlign: "justify", textIndent: "20px" }}>
+            Başta üretim ve hizmet sektörü olmak üzere çeşitli alanlarda insan hatalarını en aza indirip süreçlerin doğru ve eksiksiz yönetilmesini sağlayarak, işletme maliyetini düşürecek çözümler üreten Alpata Teknoloji ve Yazılım, tamamıyla kendi üretimi olan ürünleri ve sorunları geniş yelpazede çözebilen yaklaşımı ile rakiplerinin her zaman bir adım önünde olmayı başarmıştır.
           </Typography>
         </CardContent>
       </Collapse>
