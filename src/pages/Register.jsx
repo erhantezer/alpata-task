@@ -36,7 +36,7 @@ export default function Register() {
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
     const [phone, setPhone] = React.useState('+90')
-    const { image, setImage } = useGlobalContext()
+    const [ image, setImage ] = React.useState("")
 
     const navigate = useNavigate()
 
@@ -55,8 +55,8 @@ export default function Register() {
 
 
         // && password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/)
-        if (password.length >= 6 && password.length <= 20) {
-            if (firstName !== '' && image !== '' && lastName !== "" && email !== '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        if (password.length >= 6 && password.length <= 20 && image !== '') {
+            if (firstName !== '' && lastName !== "" && email !== '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
                 sessionStorage.setItem("user", JSON.stringify(userInfo))
                 localStorage.setItem("user", JSON.stringify(userInfo))
                 navigate("/home");
@@ -66,7 +66,7 @@ export default function Register() {
             }
         } else {
             toastErrorNotify("Şifre 6-20 karakter olmalı")
-            toastWarnNotify("Alanlar boş bırakılamaz")
+            toastWarnNotify("Resim .png ve uygun boyutta olmalı")
         }
     }
 
