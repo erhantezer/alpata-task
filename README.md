@@ -4,12 +4,13 @@
 
 Email and password are validated on the login page. When the user logs in, they are directed to the product page.
 
-📖 Product Page:
+📖 Home Page:
 
-Our products are listed on the products page and when the product is clicked, the detail page opens.
-💗 Like button is used to select/remove favorite products.
+Card => like💗 - camera - firstname - lastname - avatar - image - decription
+
 
 🔍 Register pages
+firstname lastname email phoneNumber password uploadImage 
 
 ### 🚩 PROJECT STRUCTURE
 
@@ -46,7 +47,7 @@ Our products are listed on the products page and when the product is clicked, th
 ### 🚩 How does my project look
 
 <p align="left">
-  <img src="" width="700" title="hover text">
+  <img src="alpata-structure.png" width="700" title="hover text">
   
 </p>
 
