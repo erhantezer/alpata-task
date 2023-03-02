@@ -23,15 +23,16 @@ firstname lastname email phoneNumber password uploadImage
 │   ├── Login.jsx
 │   ├── Register.jsx
 │   ├── Home.js
-│   ├── 
+│── helper --toasify
+|
 ├── index.js
-│   
+│---index.css   
 ├── App.js 
 │   
 ├── Router
 │   ├── AppRouter.jsx
 │   └── PrivateRouter.jsx
-
+|---.gitignore
 ```
 
 ### 🚩 Libraries and Technologies I use
