@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { MuiTelInput } from 'mui-tel-input'
 import { useGlobalContext } from '../context/context';
-import { toastErrorNotify, toastSuccessNotify } from '../helper/toastify';
+import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from '../helper/toastify';
 
 function Copyright(props) {
     return (
@@ -66,6 +66,7 @@ export default function Register() {
             }
         } else {
             toastErrorNotify("Şifre 6-20 karakter olmalı")
+            toastWarnNotify("Alanlar boş bırakılamaz")
         }
     }
 
